@@ -16,7 +16,7 @@ unsigned long long fatorial( int n ) {
     //printf("Fatorial: %d",  f);
     return f;
 }
-//função para calcula a soma dos termos positivos da series de McLaurin
+//função para calcular a soma dos termos positivos da series de McLaurin
 void *somas(void *arg){
 	int i;
    	resultado = 0;
@@ -33,7 +33,7 @@ void *somas(void *arg){
 	
 }
 	
-//função para calcula a soma dos termos negativos da series de McLaurin
+//função para calcular a soma dos termos negativos da series de McLaurin
 void *subtracoes(void *arg){	
 	int i;
    	resultado1 = 0;
