@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include <windows.h>
 
+/*
+O algoritmo de escalonamento SJF da prioridade aos processos que demorarão menos, afim de diminuir o tempo de espera
+*/
+
 typedef struct{
 	int id;
 	int tempo;
