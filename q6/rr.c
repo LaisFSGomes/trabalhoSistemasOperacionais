@@ -3,17 +3,16 @@
 #include <windows.h>
 #include <math.h>
 
+#define quantum 2	//duração do quantum em segundos
+
 typedef struct{
 	int id;
 	int tempo;
-	int ciclos;
-	double cada;
 } processo;
 
 int main(){
-	int qtd; //quantidade de processos na fila de execuï¿½ï¿½o
-	int i, j, m = 0;	//variï¿½veis auxiliares
-	int quantum = 2; //eu quero q o quantum dure 2 segundos
+	int qtd; //quantidade de processos na fila de execucao
+	int i, j;	//variaveis auxiliares
 	int fim = 0; //indica quando todos forem executados
 	double help;
 	printf("quantos processos estao na fila: ");
@@ -31,49 +30,45 @@ int main(){
 		filap[i].id = i+1;
 	}
 	
-	
 	/*
-	for(i=0; i<qtd; i++){
-		help = filap[i].tempo;
-		filap[i].ciclos = ceil(help/quantum);
-		printf("%d e %f\n", filap[i].ciclos, (help/quantum));
-	}
+	O algoritmo de escalonamento do tipo RR funciona como uma fila circular que executa cada processo por um quantum (aqui, 2s) e 
+	quando um processo tem seu tempo de execuçãp total finalizado, ele sai da fila e os proximos continuam até que se findem e
+	a fila fica fazia.
 	
-	
-	//agora vou descobrir qual o maior ciclo
- 	for(i=0; i<qtd; i++){
- 		if(filap[i].ciclos > m) m = filap[i].ciclos;
-	 }
-	//agora m mostra o maior ciclo
-	
-	int ftemporeal = qtd;	//tamanho da fila em tempo real
-	int posicao = 0;
-	iteracao = 0;
+	Esse algoritmo roda enquanto a fila estiver maior que zero e faz as verificações necessarias que o escalonador RR precisa.
 	*/
 	
-	int ftemporeal=qtd;            //tamnho da fila em tempo real
-    i = 0;                 //Primeira posiÃ§Ã£o da fila
+	
+	int ciclo = 1; 		//para contar quantos ciclos irá durar o escalonamento
+	int ftemporeal=qtd; 	//tamnho da fila em tempo real
+    i = 0;                 //Primeira posicao da fila de processos
+
+	system("cls");    
+	printf("\CICLO %d ---------------------------------------\n", ciclo);
     while(ftemporeal !=0){		//enquanto houver processos na fila
         while(filap[i].tempo <= 0){ //Caso o tempo total do processo tiver acabado, descartÃ¡-lo 
-            i++;
-            if(i>= qtd) //Faz a rotaÃ§Ã£o
-                i=0;
+			i = (i+1)%qtd;	//atualiza a posicao
         }
-        printf("\n\nO processo %d estÃ¡ entrando em execucao com %d segundos restantes", i , filap[i].tempo);
-        //printf("\nPaga ate %d contas", quantum);
-        filap[i].tempo = filap[i].tempo - quantum;        //calculando quantos segundos vai faltar
+    	
+    	printf("PROCESSO %d\n", (i+1));
+    	printf("id = %d \nTempo de execucao (em segundos): %d\n", filap[i].id, filap[i].tempo);
+        Sleep(2000);	//espera
+        
+        //vendo se o processo ja terminou o tempo de execucao ou se ele ja finalizou e exibindo na tela a resposta
+        filap[i].tempo = filap[i].tempo - quantum;        
         if( filap[i].tempo<=0){
-            printf("\nE sai da fila de processos.\n");
+            printf("Processo sai da fila de processos\n\n", filap[i].id);
             ftemporeal--;
         }
         else{
-            printf("\nE vai pro final da fila de processos com %d segundos restantes.\n", filap[i].tempo);
+            printf("\nProcesso vai pro final da fila de processos com %d segundos restantes.\n\n", filap[i].id, filap[i].tempo);
         }
-        i++;                               //Atualiza primeira posiï¿½ï¿½o
-            if(i>qtd)    //Faz a rotaï¿½ï¿½o
-                i=0;
-        system("PAUSE");
+
+		i = (i+1)%qtd; //atualiza a posicao
+		
+		if(i==0 && ftemporeal != 0){
+			ciclo++;
+			printf("\nCICLO %d ---------------------------------------\n", ciclo);
+		}
     }
-	
-	
 }

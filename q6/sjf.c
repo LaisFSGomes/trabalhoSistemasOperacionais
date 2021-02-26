@@ -43,7 +43,7 @@ int main(){
 	//ordenando de acordo com o tempo de execução
 	ordena(filap, qtd);
 
-	//processos
+	//escalonamento
 	system("cls");
 	for (i=0; i<qtd; i++){
 		printf("\n------------------PROCESSO %d------------------\n", (i+1));
