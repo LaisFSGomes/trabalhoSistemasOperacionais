@@ -2,7 +2,7 @@
 
 Professor: Danilo Alves Oliveira
 
-Alunos: Lais de  Fátima Sousa Gomes (matrícula 504405) e Danilo Paiva Alves (matrícula 418121)
+Alunos: Lais de  Fátima Sousa Gomes (matrícula 504405) e Mateus Paiva Alves (matrícula 418121)
 
 
 Questão 1: (1 pt) Faça um programa que leia um número “n” informado pelo usuário e diga quantos números primos há entre 0 e “n”. Esse seu programa deve rodar em 2 threads, de forma que o esforço computacional seja uniformemente dividido entre os threads.
