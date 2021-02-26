@@ -24,7 +24,7 @@ int main(void)
         //O código neste trecho será executado no processo pai
         printf("pid do Pai: %d\n", getpid());
     }
-    //    F0       Haverá um processo filho criado pelo primeiro fork() There will be 1 child process created by first fork
+    //    F0       Haverá um processo filho criado pelo primeiro fork() 
     //  /     \
     //F1      F1   Haverão 2 processos filhos criados pelo segundo fork()
     fork();
